@@ -100,71 +100,82 @@ export default class Sketch{
 
 
 
-    let TextCanvas = new getText();
-    TextCanvas.draw();
+    let material = new THREE.MeshBasicMaterial({
+    map: new THREE.TextureLoader().load('img/1.jpg')
+    });
+    let geometry = new THREE.SphereGeometry(2,20,20);
 
-    let canvasTexture = new THREE.Texture(TextCanvas.canvas);
-    canvasTexture.needsUpdate = true;
+    let mesh = new THREE.Mesh(geometry, material);
 
-
-    let material = new THREE.MeshBasicMaterial( {
-      // color: 0xff0000,
-      transparent: true,
-      side: THREE.FrontSide,
-      alphaMap: canvasTexture,
-      // map: new THREE.TextureLoader().load('img/1.jpg')
-      map: canvasTexture
-    } );
-
-    let material1 = new THREE.MeshBasicMaterial( {
-      color: 0xff0000,
-      transparent: true,
-      side: THREE.BackSide,
-      alphaMap: canvasTexture,
-      // map: new THREE.TextureLoader().load('img/1.jpg')
-      map: canvasTexture
-    } );
-    let geometry = new THREE.SphereGeometry( 1,200,200 );
-
-
-    this.meshText1 = new THREE.Mesh(geometry,material);
-    this.meshText2 = new THREE.Mesh(geometry,material1);
-
-    this.meshText1.renderOrder = 2;
-    this.meshText2.renderOrder = 1;
-
-    this.meshText1.position.z = -0.01;
-    this.scene.add(this.meshText1);
-    this.scene.add(this.meshText2);
+    this.scene.add(mesh);
 
 
 
-    let geometry1 = new THREE.CircleGeometry( 1.4, 32 );
-    let material3 = new THREE.MeshBasicMaterial( {
-      color: 0xffff00,
-      side: THREE.DoubleSide,
-      map: new THREE.TextureLoader().load('img/1.jpg')
-    } );
-    this.circle = new THREE.Mesh( geometry1, material3 );
-    this.scene.add( this.circle );
-
-
+//     let TextCanvas = new getText();
+//     TextCanvas.draw();
+//
+//     let canvasTexture = new THREE.Texture(TextCanvas.canvas);
+//     canvasTexture.needsUpdate = true;
+//
+//
+//     let material = new THREE.MeshBasicMaterial( {
+//       // color: 0xff0000,
+//       transparent: true,
+//       side: THREE.FrontSide,
+//       alphaMap: canvasTexture,
+//       // map: new THREE.TextureLoader().load('img/1.jpg')
+//       map: canvasTexture
+//     } );
+//
+//     let material1 = new THREE.MeshBasicMaterial( {
+//       color: 0xff0000,
+//       transparent: true,
+//       side: THREE.BackSide,
+//       alphaMap: canvasTexture,
+//       // map: new THREE.TextureLoader().load('img/1.jpg')
+//       map: canvasTexture
+//     } );
+//     let geometry = new THREE.SphereGeometry( 1,200,200 );
+//
+//
+//     this.meshText1 = new THREE.Mesh(geometry,material);
+//     this.meshText2 = new THREE.Mesh(geometry,material1);
+//
+//     this.meshText1.renderOrder = 2;
+//     this.meshText2.renderOrder = 1;
+//
+//     this.meshText1.position.z = -0.01;
+//     this.scene.add(this.meshText1);
+//     this.scene.add(this.meshText2);
+//
+//
+//
+//     let geometry1 = new THREE.CircleGeometry( 1.4, 32 );
+//     let material3 = new THREE.MeshBasicMaterial( {
+//       color: 0xffff00,
+//       side: THREE.DoubleSide,
+//       map: new THREE.TextureLoader().load('img/1.jpg')
+//     } );
+//     this.circle = new THREE.Mesh( geometry1, material3 );
+//     this.scene.add( this.circle );
+//
+//
   }
-
-
-
+//
+//
+//
   animate(){
     this.time += 0.05;
     // this.material.uniforms.time.value = this.time;
-
-    if(this.circle){
-      this.circle.quaternion.copy(
-        this.camera.quaternion
-      )
-    }
-
-    this.meshText1.rotation.y = this.time/10;
-    this.meshText2.rotation.y = this.time/10;
+    //
+    // if(this.circle){
+    //   this.circle.quaternion.copy(
+    //     this.camera.quaternion
+    //   )
+    // }
+    //
+    // this.meshText1.rotation.y = this.time/10;
+    // this.meshText2.rotation.y = this.time/10;
     requestAnimationFrame(this.animate.bind(this));
     this.render();
   }
